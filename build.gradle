@@ -1,9 +1,21 @@
 plugins {
     id 'java'
+    id 'checkstyle'
+}
+
+apply plugin: 'application'
+apply plugin: 'jacoco'
+
+mainClassName = 'Main'
+
+//noinspection GroovyAssignabilityCheck
+run {
+    standardInput = System.in
 }
 
 group = 'org.forsyth_mines'
 version = '1.0-SNAPSHOT'
+sourceCompatibility = '18'
 
 repositories {
     mavenCentral()
@@ -17,3 +29,57 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+///////////////////////////////////////////////////////////////////////
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+jacoco {
+    toolVersion = "0.8.8"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
+
+///////////////////////////////////////////////////////////////////////
+
+apply plugin: 'checkstyle'
+ checkstyle {
+   // Keep checkstyle a little quieter
+   ignoreFailures = true
+   showViolations = false
+ }
+
+ tasks.withType(Checkstyle) {
+   reports {
+     html.enabled = true
+     xml.enabled = false
+   }
+ }
+ checkstyle {
+     toolVersion = "8.8"
+ }
+
+///////////////////////////////////////////////////////////////////////
+// Configure SpotBugs
+///////////////////////////////////////////////////////////////////////
+// To generate an HTML report instead of XML
+// spotbugsMain {
+//     reports {
+//         xml.enabled = false
+//         html.enabled = true
+//     }
+// }
+// spotbugs {
+//     ignoreFailures = true
+//     showProgress = true
+//     effort = 'max'
+// }
+ ///////////////////////////////////////////////////////////////////////
+ 
