@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'checkstyle'
+    id "com.github.spotbugs" version "5.0.12"
 }
 
 apply plugin: 'application'
@@ -66,20 +67,21 @@ apply plugin: 'checkstyle'
      toolVersion = "8.8"
  }
 
+
 ///////////////////////////////////////////////////////////////////////
 // Configure SpotBugs
 ///////////////////////////////////////////////////////////////////////
 // To generate an HTML report instead of XML
-// spotbugsMain {
-//     reports {
-//         xml.enabled = false
-//         html.enabled = true
-//     }
-// }
-// spotbugs {
-//     ignoreFailures = true
-//     showProgress = true
-//     effort = 'max'
-// }
+ spotbugsMain {
+     reports {
+         xml.enabled = false
+         html.enabled = true
+     }
+ }
+ spotbugs {
+     ignoreFailures = true
+     showProgress = true
+     effort = 'max'
+ }
  ///////////////////////////////////////////////////////////////////////
  
