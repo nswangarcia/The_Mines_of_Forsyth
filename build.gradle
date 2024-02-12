@@ -16,7 +16,7 @@ run {
 
 group = 'org.forsyth_mines'
 version = '1.0-SNAPSHOT'
-sourceCompatibility = '18'
+//sourceCompatibility = '18'
 
 repositories {
     mavenCentral()
