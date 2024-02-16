@@ -6,7 +6,12 @@ This is a command line base dungeon crawler game build with Java and Gradle.
 ## Design Patterns
 In this project I plan to use the Structural Pattern - Decorator for creating different types of monsters, weapons, and potions, or can be used for creating different level cycles.
 The Adaptor pattern will be used for changing the state of a player or monsters health, possessions the player has and so on.
-The Behavioral pattern of Stategy can be used for creating subgroups of monster types or weapons as well.
+The Behavioral pattern of Strategy can be used for creating subgroups of monster types or weapons as well.
+
+**EDIT** I am using the Factory Design Pattern to create different types of enemies. 
+I will use the Decorator Design Pattern for the players' potions, weapons, armor, and special abilities.
+I will use the Adaptor Design Pattern for modifying the player and enemy stats.
+I will use the Observer Design Pattern for running the level cycles.
 
 ### Resources:
 Design Patterns:
