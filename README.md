@@ -10,6 +10,7 @@ The Behavioral pattern of Stategy can be used for creating subgroups of monster 
 
 ### Resources:
 Design Patterns:
+
 [BlackWasp Dps](https://www.blackwasp.co.uk/gofpatterns.aspx)
 
 [Digital Ocean DPs](https://www.digitalocean.com/community/tutorials/java-design-patterns-example-tutorial)
