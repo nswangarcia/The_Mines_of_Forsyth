@@ -25,6 +25,11 @@ public class BatKing extends Enemy {
     }
 
     @Override
+    public void setEnemyHealth(int healthPoints) {
+        this.enemyHealth = healthPoints;
+    }
+
+    @Override
     public int getEnemyHealth() {
         return this.enemyHealth;
     }

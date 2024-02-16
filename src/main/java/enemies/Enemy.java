@@ -9,6 +9,7 @@ package enemies;
  *
  */
 public abstract class Enemy {
+    public abstract void setEnemyHealth(int healthPoints);
     public abstract int getEnemyHealth();
     public abstract int getEnemyMaxHealth();
     public abstract int getEnemyMaxDamageDealt();

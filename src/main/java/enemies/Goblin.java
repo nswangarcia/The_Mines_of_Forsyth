@@ -24,6 +24,10 @@ public class Goblin extends Enemy {
         this.enemyMinDamageDealt = enemyMinDamageDealt;
     }
 
+    public void setEnemyHealth(int healthPoints) {
+        this.enemyHealth = healthPoints;
+    }
+
     @Override
     public int getEnemyHealth() {
         return this.enemyHealth;
