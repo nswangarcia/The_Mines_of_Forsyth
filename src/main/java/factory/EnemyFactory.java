@@ -30,25 +30,34 @@ public class EnemyFactory {
      * @return Enemy
      */
     public static Enemy getEnemy(String enemy, int enemyHealth, int enemyMaxHealth, int enemyMaxDamageDealt,
-                                 int enemyMinHealth, int enemyMinDamageDealt){
+                                 int enemyMinHealth, int enemyMinDamageDealt, int enemySpeed){
         if("Bat King".equalsIgnoreCase(enemy)) {
-            return new BatKing(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth, enemyMinDamageDealt);
+            return new BatKing(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+                                    enemyMinDamageDealt, enemySpeed);
         } else if ("Cave Troll".equalsIgnoreCase(enemy)) {
-            return new CaveTroll(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth, enemyMinDamageDealt);
+            return new CaveTroll(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+                                    enemyMinDamageDealt, enemySpeed);
         } else if ("Crazed Dwarf".equalsIgnoreCase(enemy)) {
-            return new CrazedDwarf(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth, enemyMinDamageDealt);
+            return new CrazedDwarf(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+                                    enemyMinDamageDealt, enemySpeed);
         } else if ("Dark Wizard".equalsIgnoreCase(enemy)) {
-            return new DarkWizard(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth, enemyMinDamageDealt);
+            return new DarkWizard(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+                                    enemyMinDamageDealt, enemySpeed);
         } else if ("Goblin".equalsIgnoreCase(enemy)) {
-            return new Goblin(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth, enemyMinDamageDealt);
+            return new Goblin(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+                                enemyMinDamageDealt, enemySpeed);
         } else if ("Orc".equalsIgnoreCase(enemy)) {
-            return new Orc(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth, enemyMinDamageDealt);
+            return new Orc(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+                                enemyMinDamageDealt, enemySpeed);
         } else if ("Rockling".equalsIgnoreCase(enemy)) {
-            return new Rockling(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth, enemyMinDamageDealt);
+            return new Rockling(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+                                enemyMinDamageDealt, enemySpeed);
         } else if ("Shadow Monster".equalsIgnoreCase(enemy)) {
-            return new ShadowMonster(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth, enemyMinDamageDealt);
+            return new ShadowMonster(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+                                enemyMinDamageDealt, enemySpeed);
         } else if ("Zombie".equalsIgnoreCase(enemy)) {
-            return new Zombie(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth, enemyMinDamageDealt);
+            return new Zombie(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+                                enemyMinDamageDealt, enemySpeed);
         }
         return null;
     }

@@ -18,11 +18,12 @@ public abstract class Enemy {
 
     public abstract int getEnemyMinDamageDealt();
 
+    public abstract int getEnemySpeed();
 
     @Override
     public String toString(){
         return "\tHealth: " + this.getEnemyHealth() + "\n\tMax Health: " + getEnemyMaxHealth() +
                 "\n\tMax Damage Dealt: " + getEnemyMaxDamageDealt() + "\n\tMin Health: " + getEnemyMinHealth() +
-                "\n\tMin Damage Dealt: " + getEnemyMinDamageDealt();
+                "\n\tMin Damage Dealt: " + getEnemyMinDamageDealt() + "\n\tSpeed: " + getEnemySpeed();
     }
 }

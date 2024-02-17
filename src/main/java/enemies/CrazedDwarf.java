@@ -16,12 +16,16 @@ public class CrazedDwarf extends Enemy {
     private int enemyMinHealth;
     private int enemyMinDamageDealt;
 
-    public CrazedDwarf(int enemyHealth, int enemyMaxHealth, int enemyMaxDamageDealt, int enemyMinHealth, int enemyMinDamageDealt) {
+    private int enemySpeed;
+
+    public CrazedDwarf(int enemyHealth, int enemyMaxHealth, int enemyMaxDamageDealt, int enemyMinHealth,
+                       int enemyMinDamageDealt, int enemySpeed) {
         this.enemyHealth = enemyHealth;
         this.enemyMaxHealth = enemyMaxHealth;
         this.enemyMaxDamageDealt = enemyMaxDamageDealt;
         this.enemyMinHealth=enemyMinHealth;
         this.enemyMinDamageDealt = enemyMinDamageDealt;
+        this.enemySpeed = enemySpeed;
     }
 
     @Override
@@ -52,6 +56,11 @@ public class CrazedDwarf extends Enemy {
     @Override
     public int getEnemyMinDamageDealt() {
         return this.enemyMinDamageDealt;
+    }
+
+    @Override
+    public int getEnemySpeed() {
+        return this.enemySpeed;
     }
 }
 
