@@ -58,6 +58,9 @@ public class EnemyFactory {
         } else if ("Zombie".equalsIgnoreCase(enemy)) {
             return new Zombie(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
                                 enemyMinDamageDealt, enemySpeed);
+        } else if ("Dragon King".equalsIgnoreCase(enemy)) {
+            return new Zombie(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+                    enemyMinDamageDealt, enemySpeed);
         }
         return null;
     }

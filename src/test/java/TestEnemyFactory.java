@@ -146,4 +146,18 @@ public class TestEnemyFactory {
         assertEquals(zombie.getEnemySpeed(), 30);
     }
 
+    @Test
+    public void testDragonKingFactory() {
+        Enemy dragonKing = EnemyFactory.getEnemy("Dragon King", 500, 1000,
+                200, 50,
+                15, 200);
+        System.out.println("\nDragon King Stats:\n" + dragonKing);
+        assertEquals(dragonKing.getEnemyHealth(), 500);
+        assertEquals(dragonKing.getEnemyMaxHealth(), 1000);
+        assertEquals(dragonKing.getEnemyMaxDamageDealt(), 200);
+        assertEquals(dragonKing.getEnemyMinHealth(), 50);
+        assertEquals(dragonKing.getEnemyMinDamageDealt(), 15);
+        assertEquals(dragonKing.getEnemySpeed(), 200);
+    }
+
 }
