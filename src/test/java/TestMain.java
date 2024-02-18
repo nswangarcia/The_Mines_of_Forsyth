@@ -18,7 +18,6 @@ public class TestMain {
      */
     @Test
     public void testInit() {
-        Main main = new Main();
-        assertTrue(main.init());
+        assertTrue(Main.init());
     }
 }

@@ -27,6 +27,7 @@ public class Main {
      */
     public static void main(String[] args) {
         init();
+        run();
     }
 
     /**
@@ -39,7 +40,6 @@ public class Main {
         System.out.println("*           THE MINES OF FORSYTH:           *");
         System.out.println("*           DUNGEON CRAWLER GAME            *");
         System.out.println("*********************************************");
-        run();
         return true;
     }
 
