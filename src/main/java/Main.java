@@ -28,29 +28,10 @@ public class Main {
      */
     public static void main(String[] args) {
         init();
-        playOrSimulateGame();
+        Run run = new Run();
+        run.run();
     }
 
-    public static void playOrSimulateGame() {
-        Scanner in = new Scanner(System.in);
-        System.out.println("\tWould you like to play the game or run a simulation of the game?");
-        System.out.println("\t1: Play Game");
-        System.out.println("\t2: Run Simulation");
-        String input = in.nextLine();
-        while (!input.equals("1") && !input.equals("2")) {
-            System.out.println("\tSorry, invalid choice, try again.");
-            input = in.nextLine();
-        }
-        if (input.equals("1")) {
-            System.out.println("\tYou have chosen to play the game!" +
-                    "\n*********************************************");
-            Run run  = new Run();
-        } else {
-            System.out.println("\tSimulating game..." +
-                    "\n*********************************************");
-            SimulateGame simulateGame = new SimulateGame();
-        }
-    }
 
     /**
      * Initialize The Mines of Forsyth.

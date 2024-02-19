@@ -7,16 +7,16 @@ import java.util.Scanner;
 public class Run {
 
     public Run() {
-        run();
-    }
 
-    public static void run() {
+    }
+    public void run() {
 
         Scanner in = new Scanner(System.in);
         Random rand = new Random();
         int level = 1;
         int cycle = 1;
-        int choice = 3;
+        int choice = 4;
+
         // Enemy setup
         String[] smallEnemies = {"Crazed Dwarf", "Goblin", "Rockling"};
         String[] mediumEnemies = {"Cave Troll", "Orc", "Zombie"};
@@ -33,26 +33,26 @@ public class Run {
         String enemyType = "";
         Enemy enemy;
 
-        // Player setup
-        int playerHealth = 250; // initial player health
-        int playerInitHealth = playerHealth;
-        int playerMaxHealth = 600;
-        int playerMinAttackDamage = 1;
-        int playerMaxAttackDamage = 100;
-        int playerAttackDamage = 100;
-        int playerMinDefense = 1;
-        int playerMaxDefense = 100;
-        int playerDefense = 10;
-        int playerHealthPotions = 5;
-        int playerInitHealthPotions = 5;
-        int playerHealPotionAmt = 75;
+        // Character setup
+        int characterHealth = 250; // initial character health
+        int characterInitHealth = characterHealth;
+        int characterMaxHealth = 600;
+        int characterMinAttackDamage = 1;
+        int characterMaxAttackDamage = 100;
+        int characterAttackDamage = 100;
+        int characterMinDefense = 1;
+        int characterMaxDefense = 100;
+        int characterDefense = 10;
+        int characterHealthPotions = 5;
+        int characterInitHealthPotions = 5;
+        int characterHealPotionAmt = 75;
         int healthPotionDrop = 15; // Percentage or health potion dropped when defeating an enemey.
-        String[] playerItems = {null, null, null};
-        String[] playerClass = { "Monster", "Assassin", "Barbarian", "Warrior", "Wizard" };
+        String[] characterItems = {null, null, null};
+        String[] characterClass = { "Miner", "Fighter", "Barbarian", "Warrior", "Wizard" };
 
 
-        int playerSpeed = 75;
-        int playerGems = 50;
+        int characterSpeed = 75;
+        int characterGems = 50;
         // gems
         int loseGems = 20;
         int findChestOdds = 5;
@@ -63,39 +63,42 @@ public class Run {
 
 
         boolean gameRunning = true;
-        boolean choosePlayer = true;
-        while (choosePlayer) {
-            System.out.println("\tChoose your player: ");
+        boolean chooseCharacter = true;
+        // select and generate character characteristics
+        while (chooseCharacter) {
+            System.out.println("\tChoose your character: ");
             System.out.println("\t1: Human");
             System.out.println("\t2: Dwarf");
             System.out.println("\t3: Elf");
             System.out.println("\t4: Orc");
-            String input = in.nextLine();
+            String input = String.valueOf(rand.nextInt(1, choice));
+            System.out.println("" + input);
             // TODO: Use decorator design here
             if (input.equals("1")) { // Human
-                System.out.println("\tCreating Human Player...");
-                choosePlayer = false;
+                System.out.println("\tCreating Human character...");
+                chooseCharacter = false;
             } else if (input.equals("2")) { // Dwarf
-                System.out.println("\tCreating Dwarf Player...");
-                choosePlayer = false;
+                System.out.println("\tCreating Dwarf character...");
+                chooseCharacter = false;
             } else if (input.equals("3")) { // Elf
-                System.out.println("\tCreating Elf Player...");
-                choosePlayer = false;
+                System.out.println("\tCreating Elf character...");
+                chooseCharacter = false;
             } else if (input.equals("4")) { // Orc
-                System.out.println("\tCreating Orc Player...");
-                choosePlayer = false;
+                System.out.println("\tCreating Orc character...");
+                chooseCharacter = false;
             } else {
                 System.out.println("\tSorry, invalid selection, try again.");
             }
+            wait(500);
         }
-
-
+        choice = 3;
         // run game
         RUN:
         while (gameRunning) {
             System.out.println("\n*****************************************************************");
             System.out.println("\t\tEntering level " + level + " of the mines...");
             System.out.println("*****************************************************************\n");
+            wait(500);
             if (cycle < 5) { // small enemy
                 enemyHealth = rand.nextInt(enemyMinHealth[0],enemyMaxHealth[0]);
                 enemyType = smallEnemies[rand.nextInt(smallEnemies.length)];
@@ -122,39 +125,49 @@ public class Run {
             }
 
             System.out.println("\t*** Oh no! A " + enemyType + " has appeared! ***\n");
+            wait(200);
 
             // game combat
             while (enemy.getEnemyHealth() > 0) {
-                System.out.println("\tYour Health Points: " + playerHealth);
-                System.out.println("\tYour Speed: " + playerSpeed);
+                System.out.println("\tYour Health Points: " + characterHealth);
+                wait(50);
+                System.out.println("\tYour Speed: " + characterSpeed);
+                wait(50);
                 System.out.println("\t" + enemyType + "'s Health Points: " + enemy.getEnemyHealth());
+                wait(50);
                 System.out.println("\t" + enemyType + "'s Speed: " + enemy.getEnemySpeed());
+                wait(50);
                 System.out.println("\n\tWhat are you going to do?");
                 System.out.println("\t 1: Attack");
                 System.out.println("\t 2: Drink Health Potion");
                 System.out.println("\t 3: Run Away");
                 System.out.println("\t 4: Exit the mines");
-                String input = in.nextLine();
+                wait(50);
+                String input = String.valueOf(rand.nextInt(1, choice));
+                System.out.println("" + input);
                 if (input.equals("1")) {
-                    int playerDamageDealt = rand.nextInt(playerAttackDamage);
-                    int playerDamageTaken = 0;
-                    playerDamageTaken = rand.nextInt(enemy.getEnemyMinDamageDealt(),enemy.getEnemyMaxDamageDealt());
+                    int characterDamageDealt = rand.nextInt(characterAttackDamage);
+                    int characterDamageTaken = 0;
+                    characterDamageTaken = rand.nextInt(enemy.getEnemyMinDamageDealt(),enemy.getEnemyMaxDamageDealt());
 
-                    enemy.setEnemyHealth((enemy.getEnemyHealth()) - playerDamageDealt);
-                    playerHealth -= playerDamageTaken;
-                    if (enemy.getEnemySpeed() > playerSpeed) {
+                    enemy.setEnemyHealth((enemy.getEnemyHealth()) - characterDamageDealt);
+                    characterHealth -= characterDamageTaken;
+                    wait(50);
+                    if (enemy.getEnemySpeed() > characterSpeed) {
                         System.out.println("\tThe " + enemyType + " is faster than you! They get an attack in before you can!");
-                        System.out.println("\tYou take " + playerDamageTaken + " damage from the " + enemyType + "'s attack!");
-                        System.out.println("\tYou attack the " + enemyType + " for " + playerDamageDealt + " damage");
+                        System.out.println("\tYou take " + characterDamageTaken + " damage from the " + enemyType + "'s attack!");
+                        System.out.println("\tYou attack the " + enemyType + " for " + characterDamageDealt + " damage");
                     } else {
-                        System.out.println("\tYou attack the " + enemyType + " for " + playerDamageDealt + " damage");
-                        System.out.println("\tYou take " + playerDamageTaken + " damage from the " + enemyType + "'s attack!");
+                        System.out.println("\tYou attack the " + enemyType + " for " + characterDamageDealt + " damage");
+                        System.out.println("\tYou take " + characterDamageTaken + " damage from the " + enemyType + "'s attack!");
                     }
-                    if (playerHealth < 1) {
+                    wait(50);
+                    if (characterHealth < 1) {
                         System.out.println(("\tYou have taken too much damage! " +
                                 "You are too weak to continue the fight!"));
                         break;
                     }
+                    wait(50);
                     if (enemy.getEnemyHealth() < 1) {
                         if (level == 50) {
                             System.out.println("\n\tThe " + enemyType + " falls to the ground in defeat..." +
@@ -165,6 +178,7 @@ public class Run {
                                     "\n\tYou win the game!" +
                                     "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" +
                                     "\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                            wait(50);
                             gameRunning = false;
                             continue RUN;
                         } else {
@@ -172,30 +186,33 @@ public class Run {
                         }
                     }
                 } else if (input.equals("2")) {
-                    if (playerHealthPotions > 0) {
-                        if (playerHealth + playerHealthPotions <= playerMaxHealth) {
-                            playerHealth += playerHealPotionAmt;
+                    if (characterHealthPotions > 0) {
+                        if (characterHealth + characterHealthPotions <= characterMaxHealth) {
+                            characterHealth += characterHealPotionAmt;
                         } else {
-                            playerHealth = playerMaxHealth;
+                            characterHealth = characterMaxHealth;
                         }
-                        playerHealthPotions -= 1;
-                        System.out.println("\tYou drink a Health Potion which heals you for " + playerHealPotionAmt
-                                + " Health Points.\n\tYou now have " + playerHealth + " Health Points."
-                                + "\n\tYou have " + playerHealthPotions + " Health Potions left.");
+                        characterHealthPotions -= 1;
+                        System.out.println("\tYou drink a Health Potion which heals you for " + characterHealPotionAmt
+                                + " Health Points.\n\tYou now have " + characterHealth + " Health Points."
+                                + "\n\tYou have " + characterHealthPotions + " Health Potions left.");
+                        wait(50);
                     } else {
                         System.out.println("\tSorry, you don't have any health potions left!" +
                                 "\n\tDefeat more enemies for a chance to get more health potions.");
+                        wait(50);
                     }
 
                 } else if (input.equals("3")) {
-                    playerHealth = playerInitHealth;
-                    playerHealthPotions = playerInitHealthPotions;
+                    characterHealth = characterInitHealth;
+                    characterHealthPotions = characterInitHealthPotions;
                     level = 1;
                     cycle = 1;
                     System.out.println("\tYou return to the top level of the mine." +
                             "\n\tYour Health Points and Healing Potions are restored." +
-                            "\n\tYou have " + playerHealth + " Health Points." +
-                            "\n\tYou have " + playerHealthPotions + " Healing Potions.");
+                            "\n\tYou have " + characterHealth + " Health Points." +
+                            "\n\tYou have " + characterHealthPotions + " Healing Potions.");
+                    wait(50);
                     continue RUN;
                 } else if (input.equals("4")) {
                     gameRunning = false;
@@ -210,86 +227,112 @@ public class Run {
                 cycle = 1;
             }
             level++;
-            // player has been defeated by an enemy
-            if (playerHealth < 1) {
+            // character has been defeated by an enemy
+            if (characterHealth < 1) {
                 System.out.println("\tYou have been defeated by the " + enemyType +
                         "!\n\tYou stagger back to the top level of the mines." +
                         "\n\tYour battle wounds are severe...");
-                playerHealth = playerInitHealth;
-                playerHealthPotions = playerInitHealthPotions;
+                wait(50);
+                characterHealth = characterInitHealth;
+                characterHealthPotions = characterInitHealthPotions;
                 level = 1;
                 cycle = 1;
-                playerGems -= loseGems;
+                characterGems -= loseGems;
                 continue RUN;
             }
             // end of level
-            System.out.println("\tYou have " + playerHealth + " Health Points left.");
+            System.out.println("\tYou have " + characterHealth + " Health Points left.");
             System.out.println("*****************************************************************");
 
             // HEALTH POTION DROP: generate health potion drops after battles
             if (rand.nextInt(100) > healthPotionDrop) {
-                playerHealthPotions++;
+                characterHealthPotions++;
                 System.out.println("\tThe " + enemyType + " dropped a Health Potion!\n\tYou now have "
-                        + playerHealthPotions + " Health Potions!");
+                        + characterHealthPotions + " Health Potions!");
                 System.out.println("*****************************************************************");
+                wait(50);
             }
             // CHEST: generate found chest after battle
             // generate health potion drops after battles
             if (rand.nextInt(100) > findChestOdds) {
-                playerHealthPotions++;
+                characterHealthPotions++;
                 int foundGems = rand.nextInt(minFindGems,maxFindGems);
                 // TODO: update armor
                 System.out.println("\tOh look! There is a treasure chest in the corner!" +
                         "\n\tYou open the chest and find a Health Potion, "
                         + rand.nextInt(minFindGems,maxFindGems) + " Gems, and armor!");
-                playerHealthPotions++;
-                playerGems += foundGems;
-                System.out.println("\tYou now have " + playerHealthPotions + " Health Potions and " + playerGems + " Gems!");
+                wait(50);
+                characterHealthPotions++;
+                characterGems += foundGems;
+                System.out.println("\tYou now have " + characterHealthPotions + " Health Potions and " + characterGems + " Gems!");
                 System.out.println("*****************************************************************");
+                wait(50);
             }
 
-            // NEXT MOVE: prompt player for next move
+            // NEXT MOVE: prompt character for next move
             System.out.println("\n\tWhat would you like to do now?");
             System.out.println("\t1: Continue deeper into the mines");
             System.out.println("\t2: Drink a Health Potion");
             System.out.println("\t3: Exit the mines");
-            String input = in.nextLine();
+            wait(50);
+            String input = String.valueOf(rand.nextInt(1, choice));
+            System.out.println("" + input);
             while (!input.equals("1") && !input.equals("2") && !input.equals("3")) {
                 System.out.println("Sorry, invalid choice, please try again!");
                 input = String.valueOf(rand.nextInt(1, choice));
                 System.out.println("" + input);
+                wait(50);
             }
             if (input.equals("1")) {
                 System.out.println("\tYou continue deeper into the mines.");
+                wait(50);
             } else if (input.equals("2")) {
-                if (playerHealthPotions > 0) {
+                if (characterHealthPotions > 0) {
                     System.out.println("\tYou drink a Health Potion." +
-                            "\n\tYou now have " + playerHealth + " Health Points." +
-                            "\n\tYou have " + playerHealthPotions + " Health Potions left.");
+                            "\n\tYou now have " + characterHealth + " Health Points." +
+                            "\n\tYou have " + characterHealthPotions + " Health Potions left.");
+                    wait(50);
                 } else {
                     System.out.println("\tSorry, you do not have any Health Potions left!");
+                    wait(50);
                 }
             } else if (input.equals("3")) {
                 System.out.println(("\tYou complete your time in the mines."));
+                wait(50);
                 gameRunning = false;
                 break;
             }
 
-            // LOW HEALTH: player health is too low to continue
-            if (playerHealth < 75) {
+            // LOW HEALTH: character health is too low to continue
+            if (characterHealth < 75) {
                 System.out.println("\tWARNING: Your Health Points are too low, you must return to " +
                         "the top level of the mine immediately!" +
                         "\tYou return to the top level of the mine." +
                         "\n\tYour Health Points and Healing Potions are restored." +
-                        "\n\tYou have " + playerHealth + " Health Points." +
-                        "\n\tYou have " + playerHealthPotions + " Healing Potions.");
-                playerHealth = playerInitHealth;
-                playerHealthPotions = playerInitHealthPotions;
+                        "\n\tYou have " + characterHealth + " Health Points." +
+                        "\n\tYou have " + characterHealthPotions + " Healing Potions.");
+                wait(50);
+                characterHealth = characterInitHealth;
+                characterHealthPotions = characterInitHealthPotions;
                 level = 1;
                 cycle = 1;
             }
         }
+        wait(50);
         System.out.println("\n\tNow leaving the Mines of Forsyth...\n\tThanks for playing!");
         System.out.println("\n*****************************************************************");
+        wait(50);
+    }
+
+    public static void wait(int ms)
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
     }
 }
