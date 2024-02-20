@@ -4,16 +4,7 @@
  * Date: 02/15/2024
  */
 
-import enemies.BatKing;
-import enemies.CaveTroll;
-import enemies.CrazedDwarf;
-import enemies.DarkWizard;
 import enemies.Enemy;
-import enemies.Goblin;
-import enemies.Orc;
-import enemies.Rockling;
-import enemies.ShadowMonster;
-import enemies.Zombie;
 import factory.EnemyFactory;
 import org.junit.jupiter.api.Test;
 

@@ -1,13 +1,26 @@
+/**
+ * File: Brawler.java.
+ * Author: Nicole Garcia
+ * Date: 02/20/2024
+ */
+
 package decorator.characterClass;
 
 import decorator.Character;
 import decorator.CharacterDecorator;
 
+/**
+ * Brawler class.
+ */
 public class Brawler extends CharacterDecorator {
 
     private final String characterClass = "Brawler";
     private int characterSpeed = 25;
 
+    /**
+     * Brawler constructor.
+     * @param newCharacter Character
+     */
     public Brawler(Character newCharacter) {
         super(newCharacter);
         // set character class
@@ -33,13 +46,21 @@ public class Brawler extends CharacterDecorator {
         System.out.print(" Adding features of " + this.characterClass + " character class.");
     }
 
+    /**
+     * Brawler class getter.
+     * @return String character class
+     */
     @Override
     public String getCharacterClass() {
-        return super.getCharacterClass() + this.characterClass;
+        return super.getCharacterClass();
     }
 
+    /**
+     * Brawler speed getter.
+     * @return int character speed
+     */
     @Override
     public int getCharacterSpeed() {
-        return super.getCharacterSpeed() + this.characterSpeed;
+        return super.getCharacterSpeed();
     }
 }

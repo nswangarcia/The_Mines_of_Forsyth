@@ -1,13 +1,25 @@
+/**
+ * File: Wizard.java.
+ * Author: Nicole Garcia
+ * Date: 02/20/2024
+ */
+
 package decorator.characterClass;
 
 import decorator.Character;
 import decorator.CharacterDecorator;
 
+/**
+ * Wizard class.
+ */
 public class Wizard extends CharacterDecorator {
     private final String characterClass = "Wizard";
     private int characterHealthPotionHealAmt = 100;
-    private int characterMagic = 100;
 
+    /**
+     * Wizard constructor.
+     * @param newCharacter Character
+     */
     public Wizard(Character newCharacter) {
         super(newCharacter);
         // set character class
@@ -33,16 +45,12 @@ public class Wizard extends CharacterDecorator {
         System.out.print(" Adding features of " + this.characterClass + " character class.");
     }
 
+    /**
+     * Wizard class getter.
+     * @return String class
+     */
     @Override
     public String getCharacterClass() {
-        return super.getCharacterClass() + this.characterClass;
-    }
-
-    public int getCharacterMagic() {
-        return this.characterMagic;
-    }
-
-    public void setCharacterMagic(int characterMagic) {
-        this.characterMagic = characterMagic;
+        return super.getCharacterClass();
     }
 }

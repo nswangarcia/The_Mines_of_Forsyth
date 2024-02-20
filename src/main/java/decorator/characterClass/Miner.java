@@ -1,12 +1,25 @@
+/**
+ * File: Miner.java.
+ * Author: Nicole Garcia
+ * Date: 02/20/2024
+ */
+
 package decorator.characterClass;
 
 import decorator.Character;
 import decorator.CharacterDecorator;
 
+/**
+ * Miner class.
+ */
 public class Miner extends CharacterDecorator {
     private final String characterClass = "Miner";
     private int characterMaxFindGems = 200;
 
+    /**
+     * Miner constructor.
+     * @param newCharacter Character
+     */
     public Miner(Character newCharacter) {
         super(newCharacter);
         // set character class
@@ -32,8 +45,12 @@ public class Miner extends CharacterDecorator {
         System.out.print(" Adding features of " + this.characterClass + " character class.");
     }
 
+    /**
+     * Miner class getter.
+     * @return String class.
+     */
     @Override
     public String getCharacterClass() {
-        return super.getCharacterClass() + this.characterClass;
+        return super.getCharacterClass();
     }
 }

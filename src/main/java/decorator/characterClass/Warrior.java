@@ -1,13 +1,26 @@
+/**
+ * File: Warrior.java.
+ * Author: Nicole Garcia
+ * Date: 02/20/2024
+ */
+
 package decorator.characterClass;
 
 import decorator.Character;
 import decorator.CharacterDecorator;
 
+/**
+ * Warrior class.
+ */
 public class Warrior extends CharacterDecorator {
     private final String characterClass = "Warrior";
     private final int characterDefense = 100;
     private final int characterHealth = 200;
 
+    /**
+     * Warrior constructor.
+     * @param newCharacter Character
+     */
     public Warrior(Character newCharacter) {
         super(newCharacter);
         // set character class
@@ -34,8 +47,12 @@ public class Warrior extends CharacterDecorator {
         System.out.print(" Adding features of " + this.characterClass + " character class.");
     }
 
+    /**
+     * Warrior class getter.
+     * @return String class
+     */
     @Override
     public String getCharacterClass() {
-        return super.getCharacterClass() + this.characterClass;
+        return super.getCharacterClass();
     }
 }

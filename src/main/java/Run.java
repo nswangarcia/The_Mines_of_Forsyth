@@ -22,7 +22,7 @@ import java.util.Scanner;
 public class Run {
 
     private Enemy enemy;
-    private Character character = new BaseCharacter();
+    public Character character = new BaseCharacter();
     private int level;
     private int cycle;
 
@@ -35,6 +35,7 @@ public class Run {
         Random rand = new Random();
         level = 1;
         cycle = 1;
+        int minChoice = 1;
         int choice = 4;
 
         // Enemy setup
@@ -69,10 +70,10 @@ public class Run {
         boolean chooseCharacter = true;
         // select and generate character.
         // character class
-        character = chooseCharacterClass(character, chooseCharacter, choice, rand);
+        character = chooseCharacterClass(character, chooseCharacter, minChoice, choice, rand);
         wait(500);
         // character type
-        character = chooseCharacterType(character, chooseCharacter, choice, rand);
+        character = chooseCharacterType(character, chooseCharacter, minChoice, choice, rand);
         wait(500);
 
         choice = 3;
@@ -256,14 +257,14 @@ public class Run {
      * @param rand Random
      * @return Character
      */
-    public Character chooseCharacterClass(Character character, boolean chooseCharacter, int choice, Random rand) {
+    public Character chooseCharacterClass(Character character, boolean chooseCharacter, int minChoice, int choice, Random rand) {
         while (chooseCharacter) {
             System.out.println("\tChoose your character class: ");
             System.out.println("\t1: Brawler");
             System.out.println("\t2: Miner");
             System.out.println("\t3: Warrior");
             System.out.println("\t4: Wizard");
-            String input = String.valueOf(rand.nextInt(1, choice));
+            String input = String.valueOf(rand.nextInt(minChoice, choice));
             System.out.println("" + input);
             if (input.equals("1")) { // Brawler
                 System.out.println("\tCreating Brawler character class...");
@@ -298,7 +299,7 @@ public class Run {
      * @param rand Random
      * @return Character
      */
-    public Character chooseCharacterType(Character character, boolean chooseCharacter, int choice, Random rand) {
+    public Character chooseCharacterType(Character character, boolean chooseCharacter, int minChoice, int choice, Random rand) {
         // select and generate character characteristics
         while (chooseCharacter) {
             System.out.println("\tChoose your character type: ");
@@ -306,19 +307,23 @@ public class Run {
             System.out.println("\t2: Elf");
             System.out.println("\t3: Human");
             System.out.println("\t4: Orc");
-            String input = String.valueOf(rand.nextInt(1, choice));
+            String input = String.valueOf(rand.nextInt(minChoice, choice));
             System.out.println("" + input);
             if (input.equals("1")) { // Human
-                System.out.println("\tCreating Human character...");
-                chooseCharacter = false;
-            } else if (input.equals("2")) { // Dwarf
                 System.out.println("\tCreating Dwarf character...");
+                character = new Dwarf(character);
                 chooseCharacter = false;
-            } else if (input.equals("3")) { // Elf
+            } else if (input.equals("2")) { // Elf
                 System.out.println("\tCreating Elf character...");
+                character = new Elf(character);
+                chooseCharacter = false;
+            } else if (input.equals("3")) { // Human
+                System.out.println("\tCreating Human character...");
+                character = new Human(character);
                 chooseCharacter = false;
             } else if (input.equals("4")) { // Orc
                 System.out.println("\tCreating Orc character...");
+                character = new Orc(character);
                 chooseCharacter = false;
             } else {
                 System.out.println("\tSorry, invalid selection, try again.");
@@ -443,5 +448,37 @@ public class Run {
         {
             Thread.currentThread().interrupt();
         }
+    }
+
+    /**
+     * enemy getter.
+     * @return Enemy
+     */
+    public Enemy getEnemy() {
+        return this.enemy;
+    }
+
+    /**
+     * Character getter.
+     * @return Character
+     */
+    public Character getCharacter() {
+        return this.character;
+    }
+
+    /**
+     * level getter.
+     * @return int
+     */
+    public int getLevel() {
+        return  this.level;
+    }
+
+    /**
+     * cycle getter.
+     * @return int
+     */
+    public int getCycle() {
+        return this.cycle;
     }
 }
