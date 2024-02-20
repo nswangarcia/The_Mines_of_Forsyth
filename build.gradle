@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'checkstyle'
     id "com.github.spotbugs" version "5.0.12"
+    id "jacoco"
 }
 
 apply plugin: 'application'
@@ -29,6 +30,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+    exclude '**/Main.class'
 }
 
 ///////////////////////////////////////////////////////////////////////
