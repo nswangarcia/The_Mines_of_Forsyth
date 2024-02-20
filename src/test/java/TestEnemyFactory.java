@@ -25,6 +25,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestEnemyFactory {
 
     @Test
+    public void testEmptyFactory() {
+        Enemy enemy = EnemyFactory.getEnemy("", 0, 0,
+                0, 0, 0, 0);
+        assertEquals(enemy, null);
+    }
+
+    @Test
     public void testBatKingFactory() {
         Enemy batKing = EnemyFactory.getEnemy("Bat King", 50, 100,
                             25, 10, 5, 30);
@@ -35,6 +42,9 @@ public class TestEnemyFactory {
         assertEquals(batKing.getEnemyMinHealth(), 10);
         assertEquals(batKing.getEnemyMinDamageDealt(), 5);
         assertEquals(batKing.getEnemySpeed(), 30);
+
+        batKing.setEnemyHealth(30);
+        assertEquals(batKing.getEnemyHealth(),30);
     }
 
     @Test
@@ -48,6 +58,9 @@ public class TestEnemyFactory {
         assertEquals(caveTroll.getEnemyMinHealth(), 50);
         assertEquals(caveTroll.getEnemyMinDamageDealt(), 5);
         assertEquals(caveTroll.getEnemySpeed(), 30);
+
+        caveTroll.setEnemyHealth(30);
+        assertEquals(caveTroll.getEnemyHealth(),30);
     }
 
     @Test
@@ -61,6 +74,9 @@ public class TestEnemyFactory {
         assertEquals(crazedDwarf.getEnemyMinHealth(), 25);
         assertEquals(crazedDwarf.getEnemyMinDamageDealt(), 5);
         assertEquals(crazedDwarf.getEnemySpeed(), 30);
+
+        crazedDwarf.setEnemyHealth(30);
+        assertEquals(crazedDwarf.getEnemyHealth(),30);
     }
 
     @Test
@@ -75,6 +91,9 @@ public class TestEnemyFactory {
         assertEquals(darkWizard.getEnemyMinHealth(), 50);
         assertEquals(darkWizard.getEnemyMinDamageDealt(), 10);
         assertEquals(darkWizard.getEnemySpeed(), 30);
+
+        darkWizard.setEnemyHealth(30);
+        assertEquals(darkWizard.getEnemyHealth(),30);
     }
 
     @Test
@@ -89,6 +108,9 @@ public class TestEnemyFactory {
         assertEquals(goblin.getEnemyMinHealth(), 5);
         assertEquals(goblin.getEnemyMinDamageDealt(), 1);
         assertEquals(goblin.getEnemySpeed(), 30);
+
+        goblin.setEnemyHealth(30);
+        assertEquals(goblin.getEnemyHealth(),30);
     }
 
     @Test
@@ -102,6 +124,9 @@ public class TestEnemyFactory {
         assertEquals(orc.getEnemyMinHealth(), 10);
         assertEquals(orc.getEnemyMinDamageDealt(), 5);
         assertEquals(orc.getEnemySpeed(), 30);
+
+        orc.setEnemyHealth(30);
+        assertEquals(orc.getEnemyHealth(),30);
     }
 
     @Test
@@ -116,6 +141,9 @@ public class TestEnemyFactory {
         assertEquals(rockling.getEnemyMinHealth(), 1);
         assertEquals(rockling.getEnemyMinDamageDealt(), 1);
         assertEquals(rockling.getEnemySpeed(), 30);
+
+        rockling.setEnemyHealth(30);
+        assertEquals(rockling.getEnemyHealth(),30);
     }
 
     @Test
@@ -130,6 +158,9 @@ public class TestEnemyFactory {
         assertEquals(shadowMonster.getEnemyMinHealth(), 50);
         assertEquals(shadowMonster.getEnemyMinDamageDealt(), 25);
         assertEquals(shadowMonster.getEnemySpeed(), 100);
+
+        shadowMonster.setEnemyHealth(30);
+        assertEquals(shadowMonster.getEnemyHealth(),30);
     }
 
     @Test
@@ -144,6 +175,9 @@ public class TestEnemyFactory {
         assertEquals(zombie.getEnemyMinHealth(), 25);
         assertEquals(zombie.getEnemyMinDamageDealt(), 15);
         assertEquals(zombie.getEnemySpeed(), 30);
+
+        zombie.setEnemyHealth(30);
+        assertEquals(zombie.getEnemyHealth(),30);
     }
 
     @Test
@@ -158,6 +192,9 @@ public class TestEnemyFactory {
         assertEquals(dragonKing.getEnemyMinHealth(), 50);
         assertEquals(dragonKing.getEnemyMinDamageDealt(), 15);
         assertEquals(dragonKing.getEnemySpeed(), 200);
+
+        dragonKing.setEnemyHealth(30);
+        assertEquals(dragonKing.getEnemyHealth(),30);
     }
 
 }

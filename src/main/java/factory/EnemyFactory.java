@@ -5,16 +5,7 @@
  */
 package factory;
 
-import enemies.BatKing;
-import enemies.CaveTroll;
-import enemies.CrazedDwarf;
-import enemies.DarkWizard;
-import enemies.Enemy;
-import enemies.Goblin;
-import enemies.Orc;
-import enemies.Rockling;
-import enemies.ShadowMonster;
-import enemies.Zombie;
+import enemies.*;
 
 /**
  *
@@ -59,7 +50,7 @@ public class EnemyFactory {
             return new Zombie(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
                                 enemyMinDamageDealt, enemySpeed);
         } else if ("Dragon King".equalsIgnoreCase(enemy)) {
-            return new Zombie(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+            return new DragonKingFinalBoss(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
                     enemyMinDamageDealt, enemySpeed);
         }
         return null;
