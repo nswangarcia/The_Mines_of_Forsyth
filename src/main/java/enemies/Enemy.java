@@ -9,6 +9,8 @@ package enemies;
  *
  */
 public abstract class Enemy {
+
+    public abstract String getEnemyType();
     public abstract void setEnemyHealth(int healthPoints);
     public abstract int getEnemyHealth();
     public abstract int getEnemyMaxHealth();
@@ -22,8 +24,9 @@ public abstract class Enemy {
 
     @Override
     public String toString(){
-        return "\tHealth: " + this.getEnemyHealth() + "\n\tMax Health: " + getEnemyMaxHealth() +
-                "\n\tMax Damage Dealt: " + getEnemyMaxDamageDealt() + "\n\tMin Health: " + getEnemyMinHealth() +
-                "\n\tMin Damage Dealt: " + getEnemyMinDamageDealt() + "\n\tSpeed: " + getEnemySpeed();
+        return "\tType: " + this.getEnemyType() + "\n\tHealth: " + this.getEnemyHealth() +
+                "\n\tMax Health: " + getEnemyMaxHealth() + "\n\tMax Damage Dealt: " + getEnemyMaxDamageDealt() +
+                "\n\tMin Health: " + getEnemyMinHealth() + "\n\tMin Damage Dealt: " + getEnemyMinDamageDealt() +
+                "\n\tSpeed: " + getEnemySpeed();
     }
 }

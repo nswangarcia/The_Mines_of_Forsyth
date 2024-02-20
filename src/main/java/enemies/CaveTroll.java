@@ -10,6 +10,7 @@ package enemies;
  */
 public class CaveTroll extends Enemy {
 
+    private String enemyType = "Cave Troll";
     private int enemyHealth;
     private int enemyMaxHealth;
     private int enemyMaxDamageDealt;
@@ -26,6 +27,11 @@ public class CaveTroll extends Enemy {
         this.enemyMinHealth=enemyMinHealth;
         this.enemyMinDamageDealt = enemyMinDamageDealt;
         this.enemySpeed = enemySpeed;
+    }
+
+    @Override
+    public String getEnemyType() {
+        return this.enemyType;
     }
 
     @Override

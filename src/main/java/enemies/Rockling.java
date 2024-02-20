@@ -10,6 +10,8 @@ package enemies;
  */
 public class Rockling extends Enemy {
 
+    private String enemyType = "Rockling";
+
     private int enemyHealth;
     private int enemyMaxHealth;
     private int enemyMaxDamageDealt;
@@ -26,6 +28,11 @@ public class Rockling extends Enemy {
         this.enemyMinHealth=enemyMinHealth;
         this.enemyMinDamageDealt = enemyMinDamageDealt;
         this.enemySpeed = enemySpeed;
+    }
+
+    @Override
+    public String getEnemyType() {
+        return this.enemyType;
     }
 
     @Override

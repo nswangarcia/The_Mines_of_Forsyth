@@ -10,6 +10,7 @@ package enemies;
  */
 public class Goblin extends Enemy {
 
+    private String enemyType = "Goblin";
     private int enemyHealth;
     private int enemyMaxHealth;
     private int enemyMaxDamageDealt;
@@ -26,6 +27,11 @@ public class Goblin extends Enemy {
         this.enemyMinHealth=enemyMinHealth;
         this.enemyMinDamageDealt = enemyMinDamageDealt;
         this.enemySpeed = enemySpeed;
+    }
+
+    @Override
+    public String getEnemyType() {
+        return this.enemyType;
     }
 
     public void setEnemyHealth(int healthPoints) {
