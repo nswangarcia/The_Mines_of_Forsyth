@@ -90,10 +90,10 @@ public class Run {
         // select and generate character.
         // character class
         character = chooseCharacterClass(character, chooseCharacter, minChoice, choice, rand);
-        wait(500);
+        wait(200);
         // character type
         character = chooseCharacterType(character, chooseCharacter, minChoice, choice, rand);
-        wait(500);
+        wait(200);
 
         choice = 3;
         //TODO: put in another method?
@@ -105,7 +105,7 @@ public class Run {
             System.out.println("\t\tEntering level " + level + " of the mines...");
             System.out.println("****************************************************"
                     + "*************\n");
-            wait(500);
+            wait(200);
             // ENEMY: generate enemy depending on level and cycle
             if (cycle < 5) { // small enemy
                 enemy = createEnemy(rand.nextInt(enemyMinHealth[0],enemyMaxHealth[0]),
@@ -134,7 +134,7 @@ public class Run {
             }
             enemyType = enemy.getEnemyType();
             System.out.println("\t*** Oh no! A " + enemyType + " has appeared! ***\n");
-            wait(200);
+            wait(100);
 
             // COMBAT: generate game combat
             while (enemy.getEnemyHealth() > 0) {
