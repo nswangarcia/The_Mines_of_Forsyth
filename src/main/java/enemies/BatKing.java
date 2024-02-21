@@ -3,10 +3,11 @@
  * Author: Nicole Garcia
  * Date: 02/15/2024
  */
+
 package enemies;
 
 /**
- *
+ * BatKing class.
  */
 public class BatKing extends Enemy {
 
@@ -19,12 +20,22 @@ public class BatKing extends Enemy {
 
     private int enemySpeed;
 
-    public BatKing(int enemyHealth, int enemyMaxHealth, int enemyMaxDamageDealt, int enemyMinHealth,
+    /**
+     * BatKing constructor.
+     * @param enemyHealth int
+     * @param enemyMaxHealth int
+     * @param enemyMaxDamageDealt int
+     * @param enemyMinHealth int
+     * @param enemyMinDamageDealt int
+     * @param enemySpeed int
+     */
+    public BatKing(int enemyHealth, int enemyMaxHealth,
+                   int enemyMaxDamageDealt, int enemyMinHealth,
                    int enemyMinDamageDealt, int enemySpeed) {
         this.enemyHealth = enemyHealth;
         this.enemyMaxHealth = enemyMaxHealth;
         this.enemyMaxDamageDealt = enemyMaxDamageDealt;
-        this.enemyMinHealth=enemyMinHealth;
+        this.enemyMinHealth = enemyMinHealth;
         this.enemyMinDamageDealt = enemyMinDamageDealt;
         this.enemySpeed = enemySpeed;
     }

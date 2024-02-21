@@ -4,13 +4,13 @@
  * Date: 02/20/2024
  */
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import decorator.BaseCharacter;
 import decorator.Character;
 import decorator.CharacterDecorator;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * TestCharacterDecorator class.
@@ -26,7 +26,7 @@ public class TestCharacterDecorator {
         assertEquals(baseCharacter.getCharacterHealth(), 75);
         assertEquals(baseCharacter.getCharacterInitHealth(), 75);
         assertEquals(baseCharacter.getCharacterInitHealth(), baseCharacter.getCharacterHealth());
-        assertEquals(baseCharacter.getCharacterMinHealth (), 50);
+        assertEquals(baseCharacter.getCharacterMinHealth(),50);
         assertEquals(baseCharacter.getCharacterMaxHealth(), 1000);
         assertEquals(baseCharacter.getCharacterAttackDamage(), 100);
         assertEquals(baseCharacter.getCharacterDefense(), 50);
@@ -65,7 +65,7 @@ public class TestCharacterDecorator {
         assertEquals(baseCharacter.getCharacterHealth(), 25);
         assertEquals(baseCharacter.getCharacterInitHealth(), 25);
         assertEquals(baseCharacter.getCharacterInitHealth(), baseCharacter.getCharacterHealth());
-        assertEquals(baseCharacter.getCharacterMinHealth (), 25);
+        assertEquals(baseCharacter.getCharacterMinHealth(),25);
         assertEquals(baseCharacter.getCharacterMaxHealth(), 500);
         assertEquals(baseCharacter.getCharacterAttackDamage(), 25);
         assertEquals(baseCharacter.getCharacterDefense(), 25);
@@ -87,8 +87,9 @@ public class TestCharacterDecorator {
         assertEquals(characterDecorator.getCharacterClass(), "");
         assertEquals(characterDecorator.getCharacterHealth(), 75);
         assertEquals(characterDecorator.getCharacterInitHealth(), 75);
-        assertEquals(characterDecorator.getCharacterInitHealth(), characterDecorator.getCharacterHealth());
-        assertEquals(characterDecorator.getCharacterMinHealth (), 50);
+        assertEquals(characterDecorator.getCharacterInitHealth(),
+                characterDecorator.getCharacterHealth());
+        assertEquals(characterDecorator.getCharacterMinHealth(),50);
         assertEquals(characterDecorator.getCharacterMaxHealth(), 1000);
         assertEquals(characterDecorator.getCharacterAttackDamage(), 100);
         assertEquals(characterDecorator.getCharacterDefense(), 50);
@@ -127,8 +128,9 @@ public class TestCharacterDecorator {
         assertEquals(characterDecorator.getCharacterClass(), "Class");
         assertEquals(characterDecorator.getCharacterHealth(), 25);
         assertEquals(characterDecorator.getCharacterInitHealth(), 25);
-        assertEquals(characterDecorator.getCharacterInitHealth(), characterDecorator.getCharacterHealth());
-        assertEquals(characterDecorator.getCharacterMinHealth (), 25);
+        assertEquals(characterDecorator.getCharacterInitHealth(),
+                characterDecorator.getCharacterHealth());
+        assertEquals(characterDecorator.getCharacterMinHealth(),25);
         assertEquals(characterDecorator.getCharacterMaxHealth(), 500);
         assertEquals(characterDecorator.getCharacterAttackDamage(), 25);
         assertEquals(characterDecorator.getCharacterDefense(), 25);

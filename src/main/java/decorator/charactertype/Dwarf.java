@@ -1,11 +1,11 @@
-package decorator.characterType;
+package decorator.charactertype;
 
 import decorator.Character;
 import decorator.CharacterDecorator;
 
-public class Elf extends CharacterDecorator {
+public class Dwarf extends CharacterDecorator {
 
-    private static final String characterType = "Elf";
+    private static final String characterType = "Dwarf";
     private int characterHealth = 250;
     private int characterInitHealth = characterHealth;
     private int characterMinHealth = 100;
@@ -19,7 +19,12 @@ public class Elf extends CharacterDecorator {
     private int characterHealthPotions = 5;
     private int characterInitHealthPotions = 5;
     private int characterHealthPotionHealAmt = 75;
-    public Elf(Character newCharacter) {
+
+    /**
+     * Dwarf Character type.
+     * @param newCharacter Character
+     */
+    public Dwarf(Character newCharacter) {
         super(newCharacter);
         // set character features
         newCharacter.setCharacterType(characterType);

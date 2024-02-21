@@ -4,16 +4,16 @@
  * Date: 02/20/2024
  */
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import decorator.BaseCharacter;
 import decorator.Character;
-import decorator.characterType.Dwarf;
-import decorator.characterType.Elf;
-import decorator.characterType.Human;
-import decorator.characterType.Orc;
+import decorator.charactertype.Dwarf;
+import decorator.charactertype.Elf;
+import decorator.charactertype.Human;
+import decorator.charactertype.Orc;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * TestCharacterType class test cases.

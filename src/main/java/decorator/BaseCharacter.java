@@ -19,7 +19,7 @@ public class BaseCharacter implements Character {
     private int characterHealthPotionHealAmt = 75;
 
     @Override
-    public void create(){
+    public void create() {
         System.out.print("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
     }
 
@@ -33,8 +33,8 @@ public class BaseCharacter implements Character {
     public String getCharacterClass() {
         return this.characterClass;
     }
-    @Override
 
+    @Override
     public int getCharacterHealth() {
         return this.characterHealth;
     }

@@ -3,12 +3,23 @@
  * Author: Nicole Garcia
  * Date: 02/15/2024
  */
+
 package factory;
 
-import enemies.*;
+import enemies.BatKing;
+import enemies.CaveTroll;
+import enemies.CrazedDwarf;
+import enemies.DarkWizard;
+import enemies.DragonKingFinalBoss;
+import enemies.Enemy;
+import enemies.Goblin;
+import enemies.Orc;
+import enemies.Rockling;
+import enemies.ShadowMonster;
+import enemies.Zombie;
 
 /**
- *
+ * EnemyFactory class.
  */
 public class EnemyFactory {
 
@@ -20,9 +31,10 @@ public class EnemyFactory {
      * @param enemyMaxDamageDealt -  int representing enemy max damage dealt.
      * @return Enemy
      */
-    public static Enemy getEnemy(String enemy, int enemyHealth, int enemyMaxHealth, int enemyMaxDamageDealt,
-                                 int enemyMinHealth, int enemyMinDamageDealt, int enemySpeed){
-        if("Bat King".equalsIgnoreCase(enemy)) {
+    public static Enemy getEnemy(String enemy, int enemyHealth, int enemyMaxHealth,
+                                 int enemyMaxDamageDealt, int enemyMinHealth,
+                                 int enemyMinDamageDealt, int enemySpeed) {
+        if ("Bat King".equalsIgnoreCase(enemy)) {
             return new BatKing(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
                                     enemyMinDamageDealt, enemySpeed);
         } else if ("Cave Troll".equalsIgnoreCase(enemy)) {
@@ -44,13 +56,15 @@ public class EnemyFactory {
             return new Rockling(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
                                 enemyMinDamageDealt, enemySpeed);
         } else if ("Shadow Monster".equalsIgnoreCase(enemy)) {
-            return new ShadowMonster(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+            return new ShadowMonster(enemyHealth, enemyMaxHealth,
+                    enemyMaxDamageDealt, enemyMinHealth,
                                 enemyMinDamageDealt, enemySpeed);
         } else if ("Zombie".equalsIgnoreCase(enemy)) {
             return new Zombie(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
                                 enemyMinDamageDealt, enemySpeed);
         } else if ("Dragon King".equalsIgnoreCase(enemy)) {
-            return new DragonKingFinalBoss(enemyHealth, enemyMaxHealth, enemyMaxDamageDealt, enemyMinHealth,
+            return new DragonKingFinalBoss(enemyHealth, enemyMaxHealth,
+                    enemyMaxDamageDealt, enemyMinHealth,
                     enemyMinDamageDealt, enemySpeed);
         }
         return null;

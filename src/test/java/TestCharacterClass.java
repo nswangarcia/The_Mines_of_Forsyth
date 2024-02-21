@@ -4,16 +4,16 @@
  * Date: 02/20/2024
  */
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import decorator.BaseCharacter;
 import decorator.Character;
-import decorator.characterClass.Brawler;
-import decorator.characterClass.Miner;
-import decorator.characterClass.Warrior;
-import decorator.characterClass.Wizard;
+import decorator.characterclass.Brawler;
+import decorator.characterclass.Miner;
+import decorator.characterclass.Warrior;
+import decorator.characterclass.Wizard;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * TestCharacterClass class test cases.

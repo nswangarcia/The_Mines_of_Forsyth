@@ -3,10 +3,11 @@
  * Author: Nicole Garcia
  * Date: 02/15/2024
  */
+
 package enemies;
 
 /**
- *
+ * CaveTroll class.
  */
 public class CaveTroll extends Enemy {
 
@@ -19,12 +20,22 @@ public class CaveTroll extends Enemy {
 
     private int enemySpeed;
 
-    public CaveTroll(int enemyHealth, int enemyMaxHealth, int enemyMaxDamageDealt, int enemyMinHealth,
+    /**
+     * CaveTroll constructor.
+     * @param enemyHealth int
+     * @param enemyMaxHealth int
+     * @param enemyMaxDamageDealt int
+     * @param enemyMinHealth int
+     * @param enemyMinDamageDealt int
+     * @param enemySpeed int
+     */
+    public CaveTroll(int enemyHealth, int enemyMaxHealth,
+                     int enemyMaxDamageDealt, int enemyMinHealth,
                      int enemyMinDamageDealt, int enemySpeed) {
         this.enemyHealth = enemyHealth;
         this.enemyMaxHealth = enemyMaxHealth;
         this.enemyMaxDamageDealt = enemyMaxDamageDealt;
-        this.enemyMinHealth=enemyMinHealth;
+        this.enemyMinHealth = enemyMinHealth;
         this.enemyMinDamageDealt = enemyMinDamageDealt;
         this.enemySpeed = enemySpeed;
     }

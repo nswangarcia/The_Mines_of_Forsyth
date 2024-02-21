@@ -4,16 +4,18 @@
  * Date: 02/20/2024
  */
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import decorator.Character;
 
-import decorator.characterClass.Warrior;
 import enemies.Enemy;
-import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import org.junit.jupiter.api.Test;
+
 
 /**
  * TestRun class test cases.
@@ -40,14 +42,14 @@ public class TestRun {
                 10, 1, 20);
         character.setCharacterHealth(10);
         Random rand = new Random();
-        assertEquals(run.attack("Goblin", enemy, rand, 1, true), true);
+        assertTrue(run.attack("Goblin", enemy, rand, 1, true));
         character.setCharacterSpeed(0);
-        assertEquals(run.attack("Goblin", enemy, rand, 1, true), true);
+        assertTrue(run.attack("Goblin", enemy, rand, 1, true));
         enemy.setEnemyHealth(0);
         character.setCharacterHealth(0);
-        assertEquals(run.attack("Goblin", enemy, rand, 50, true), true);
-        assertEquals(run.attack("Goblin", enemy, rand, 1, true), true);
-        assertEquals(run.attack("Goblin", enemy, rand, 1, false), false);
+        assertTrue(run.attack("Goblin", enemy, rand, 50, true));
+        assertTrue(run.attack("Goblin", enemy, rand, 1, true));
+        assertFalse(run.attack("Goblin", enemy, rand, 1, false));
     }
 
     /**
@@ -65,7 +67,7 @@ public class TestRun {
         character = run.chooseCharacterClass(run.getCharacter(), true,  2, 3, rand);
         assertEquals(character.getCharacterClass(), "Miner");
         // Warrior
-        character= run.chooseCharacterClass(run.getCharacter(), true,  3, 4, rand);
+        character = run.chooseCharacterClass(run.getCharacter(), true,  3, 4, rand);
         assertEquals(character.getCharacterClass(), "Warrior");
         // Wizard
         character = run.chooseCharacterClass(run.getCharacter(), true,  4, 5, rand);
@@ -87,7 +89,7 @@ public class TestRun {
         character = run.chooseCharacterType(run.getCharacter(), true,  2, 3, rand);
         assertEquals(character.getCharacterType(), "Elf");
         // Human
-        character= run.chooseCharacterType(run.getCharacter(), true,  3, 4, rand);
+        character = run.chooseCharacterType(run.getCharacter(), true,  3, 4, rand);
         assertEquals(character.getCharacterType(), "Human");
         // Orc
         character = run.chooseCharacterType(run.getCharacter(), true,  4, 5, rand);
@@ -105,7 +107,7 @@ public class TestRun {
         character.setCharacterHealthPotions(5);
         character.setCharacterHealth(25);
         run.useHealthPotion();
-        int health = character.getCharacterHealth();
+
         assertEquals(character.getCharacterHealthPotions(), 4);
         assertEquals(character.getCharacterHealth(), 100);
 
@@ -113,26 +115,26 @@ public class TestRun {
         character.setCharacterHealthPotions(5);
         character.setCharacterHealth(950);
         run.useHealthPotion();
-        health = character.getCharacterHealth();
+        int health1 = character.getCharacterHealth();
         assertEquals(character.getCharacterHealthPotions(), 4);
-        assertEquals(character.getCharacterHealth(), health);
+        assertEquals(character.getCharacterHealth(), health1);
 
         // character health + health potion heal > character health max
         // where character health is already at max
         character.setCharacterHealthPotions(5);
         character.setCharacterHealth(1000);
         run.useHealthPotion();
-        health = character.getCharacterHealth();
+        int health2 = character.getCharacterHealth();
         assertEquals(character.getCharacterHealthPotions(), 5);
-        assertEquals(character.getCharacterHealth(), health);
+        assertEquals(character.getCharacterHealth(), health2);
 
         // no health potions left
         character.setCharacterHealthPotions(0);
         character.setCharacterHealth(100);
         run.useHealthPotion();
-        health = character.getCharacterHealth();
+        int health3 = character.getCharacterHealth();
         assertEquals(character.getCharacterHealthPotions(), 0);
-        assertEquals(character.getCharacterHealth(), health);
+        assertEquals(character.getCharacterHealth(), health3);
     }
 
     /**

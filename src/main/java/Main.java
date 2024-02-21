@@ -4,12 +4,6 @@
  * Date: 02/12/2024
  */
 
-import enemies.Enemy;
-import factory.EnemyFactory;
-
-import java.util.Random;
-import java.util.Scanner;
-
 
 /**
  * Main class.

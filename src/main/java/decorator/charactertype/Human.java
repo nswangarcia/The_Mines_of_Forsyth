@@ -1,11 +1,11 @@
-package decorator.characterType;
+package decorator.charactertype;
 
 import decorator.Character;
 import decorator.CharacterDecorator;
 
-public class Dwarf extends CharacterDecorator {
+public class Human extends CharacterDecorator {
 
-    private static final String characterType = "Dwarf";
+    private static final String characterType = "Human";
     private int characterHealth = 250;
     private int characterInitHealth = characterHealth;
     private int characterMinHealth = 100;
@@ -19,7 +19,12 @@ public class Dwarf extends CharacterDecorator {
     private int characterHealthPotions = 5;
     private int characterInitHealthPotions = 5;
     private int characterHealthPotionHealAmt = 75;
-    public Dwarf(Character newCharacter) {
+
+    /**
+     * Human Character type.
+     * @param newCharacter Character
+     */
+    public Human(Character newCharacter) {
         super(newCharacter);
         // set character features
         newCharacter.setCharacterType(characterType);
@@ -36,6 +41,6 @@ public class Dwarf extends CharacterDecorator {
         newCharacter.setCharacterHealthPotions(characterHealthPotions);
         newCharacter.setCharacterInitHealthPotions(characterInitHealthPotions);
         newCharacter.setCharacterHealthPotionHealAmt(characterHealthPotionHealAmt);
-        System.out.print("\tAdding features of " + this.characterType + " character type.");
+        System.out.println("\tAdding features of " + this.characterType + " character type.");
     }
 }

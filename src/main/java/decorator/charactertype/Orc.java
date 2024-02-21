@@ -1,4 +1,4 @@
-package decorator.characterType;
+package decorator.charactertype;
 
 import decorator.Character;
 import decorator.CharacterDecorator;
@@ -19,6 +19,11 @@ public class Orc extends CharacterDecorator {
     private int characterHealthPotions = 5;
     private int characterInitHealthPotions = 5;
     private int characterHealthPotionHealAmt = 75;
+
+    /**
+     * Orc Character type.
+     * @param newCharacter Character
+     */
     public Orc(Character newCharacter) {
         super(newCharacter);
         // set character features

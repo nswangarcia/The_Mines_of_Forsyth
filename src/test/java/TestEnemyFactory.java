@@ -4,11 +4,11 @@
  * Date: 02/15/2024
  */
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import enemies.Enemy;
 import factory.EnemyFactory;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for the Enemy Factory class.

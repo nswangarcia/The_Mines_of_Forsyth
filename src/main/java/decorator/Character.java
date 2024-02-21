@@ -29,6 +29,7 @@ public interface Character {
     public int getCharacterMaxFindGems();
 
     public int getCharacterHealthPotions();
+
     public int getCharacterInitHealthPotions();
 
     public int getCharacterHealthPotionHealAmt();
