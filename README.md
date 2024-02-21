@@ -62,7 +62,48 @@ Implemented: No
 
 [The Mines of Forsyth Screen cast](https://youtu.be/bXGwQpLfUPI?si=h0OArbLYpRdZ_q_j)
 
+### Gradle Run:
 
+> ![alt text](https://github.com/nswangarcia/The_Mines_of_Forsyth/blob/main/photos/GradleRun.jpg)
+
+### Gradle Build:
+
+> ![alt text](https://github.com/nswangarcia/The_Mines_of_Forsyth/blob/main/photos/GradleBuild.jpg)
+
+### GitHub Actions:
+
+> ![alt text](https://github.com/nswangarcia/The_Mines_of_Forsyth/blob/main/photos/GitHubActions.jpg)
+
+### SpotBugs Report:
+
+> ![alt text](https://github.com/nswangarcia/The_Mines_of_Forsyth/blob/main/photos/SpotBugsReport.jpg)
+
+### Checkstyle Reports:
+#### Main
+
+> ![alt text](https://github.com/nswangarcia/The_Mines_of_Forsyth/blob/main/photos/CheckstyleMain.jpg)
+
+#### Test
+
+> ![alt text](https://github.com/nswangarcia/The_Mines_of_Forsyth/blob/main/photos/CheckstyleTest.jpg)
+
+### JUnit Report:
+
+> ![alt text](https://github.com/nswangarcia/The_Mines_of_Forsyth/blob/main/photos/JUnit.jpg)
+
+### Jacoco Code Coverage:
+
+> ![alt text](https://github.com/nswangarcia/The_Mines_of_Forsyth/blob/main/photos/JacocoCodeCoverage.jpg)
+
+### Static Analysis Conclusion:
+
+> SpotBugs Errors: 0
+> 
+> Checkstyle Violations: 0
+> 
+> JUnit Tests: 100% pass
+> 
+> Jacoco Code Coverage: 73%
 
 ### Resources:
 Design Pattern references I used for this project:
@@ -76,12 +117,14 @@ Design Pattern references I used for this project:
 [Decorator DP](https://www.digitalocean.com/community/tutorials/decorator-design-pattern-in-java-example)
 
 ## Setup
-Clone the repo: 
+Clone the repo and run the project: 
 
     git clone https://github.com/nswangarcia/The_Mines_of_Forsyth.git
 
-cd The_Mines_of_Forsyth
+    cd The_Mines_of_Forsyth/
 
-gradle build
-
-gradle run
+    gradle clean
+    
+    gradle build
+    
+    gradle run
