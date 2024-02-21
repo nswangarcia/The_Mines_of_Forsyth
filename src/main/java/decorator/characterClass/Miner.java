@@ -13,7 +13,7 @@ import decorator.CharacterDecorator;
  * Miner class.
  */
 public class Miner extends CharacterDecorator {
-    private final String characterClass = "Miner";
+    private static final String characterClass = "Miner";
     private int characterMaxFindGems = 200;
 
     /**

@@ -13,9 +13,9 @@ import decorator.CharacterDecorator;
  * Warrior class.
  */
 public class Warrior extends CharacterDecorator {
-    private final String characterClass = "Warrior";
-    private final int characterDefense = 100;
-    private final int characterHealth = 200;
+    private static final String characterClass = "Warrior";
+    private static final int characterDefense = 100;
+    private static final int characterHealth = 200;
 
     /**
      * Warrior constructor.

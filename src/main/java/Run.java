@@ -1,4 +1,8 @@
-
+/**
+ * File: Run.java.
+ * Author: Nicole Garcia
+ * Date: 02/20/2024
+ */
 
 import decorator.Character;
 import decorator.BaseCharacter;
@@ -19,20 +23,38 @@ import factory.EnemyFactory;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Run The Mines of Forsyth.
+ */
 public class Run {
 
     private Enemy enemy;
     public Character character = new BaseCharacter();
     private int level;
     private int cycle;
+    private final Random rand = new Random();
+    private final Scanner in = new Scanner(System.in, "UTF-8");
 
+    // Character and item setup
+    private String[] equipItems = { "Armor", "Sword", "Shield"};
+    private int equipItemMaxAdvantage = 50;
+    //private String[] characterEquipItems = {null, null, null};
+   // private int[] characterEquipItemsAdvantage = {0,0,0};
+   // private String characterEquipItem = "";
+   // private int characterEquipItemAdvantage = 0;
+    private final String[] characterClass = { "Miner", "Brawler", "Warrior", "Wizard" };
+
+    /**
+     * Run default constructor.
+     */
     public Run() {
 
     }
-    public void run() {
 
-        Scanner in = new Scanner(System.in);
-        Random rand = new Random();
+    /**
+     * Run game.
+     */
+    public void run() {
         level = 1;
         cycle = 1;
         int minChoice = 1;
@@ -53,10 +75,6 @@ public class Run {
 
         int healthPotionDrop = 15; // Percentage or health potion dropped when defeating an enemey.
 
-        // Character setup
-        String[] characterItems = {null, null, null};
-        String[] characterClass = { "Miner", "Brawler", "Warrior", "Wizard" };
-
         // gems
         int loseGems = 20;
         int findChestOdds = 5;
@@ -64,7 +82,7 @@ public class Run {
         int minFindGems = 1;
 
         // shop
-        int shopOdds = 10;
+        int findShopOdds = 10;
 
         boolean gameRunning = true;
         boolean chooseCharacter = true;
@@ -85,27 +103,27 @@ public class Run {
             System.out.println("\t\tEntering level " + level + " of the mines...");
             System.out.println("*****************************************************************\n");
             wait(500);
-            // generate enemy
+            // ENEMY: generate enemy depending on level and cycle
             if (cycle < 5) { // small enemy
-                createEnemy(rand.nextInt(enemyMinHealth[0],enemyMaxHealth[0]),
+                enemy = createEnemy(rand.nextInt(enemyMinHealth[0],enemyMaxHealth[0]),
                             smallEnemies[rand.nextInt(smallEnemies.length)], enemyMaxHealth[0],
                             enemyMaxDamageDealt[0], enemyMinHealth[0], enemyMinDamageDealt[0],
                             rand.nextInt(enemyMinSpeed, enemyMaxSpeed));
             } else if (cycle < 10) { // medium enemy
-                createEnemy(rand.nextInt(enemyMinHealth[1],enemyMaxHealth[1]),
+                enemy = createEnemy(rand.nextInt(enemyMinHealth[1],enemyMaxHealth[1]),
                         mediumEnemies[rand.nextInt(mediumEnemies.length)], enemyMaxHealth[1],
                         enemyMaxDamageDealt[1], enemyMinHealth[1], enemyMinDamageDealt[1],
                         rand.nextInt(enemyMinSpeed, enemyMaxSpeed));
             } else if (level == 50) { // final boss enemy
                 System.out.println("\n\tFinal Boss Level!\n\tYou have reached the end of the Mines!\n");
-                createEnemy(rand.nextInt(enemyMinHealth[3],enemyMaxHealth[3]),
+                enemy = createEnemy(rand.nextInt(enemyMinHealth[3],enemyMaxHealth[3]),
                         finalBossEnemy, enemyMaxHealth[3], enemyMaxDamageDealt[3],
                         enemyMinHealth[3], enemyMinDamageDealt[3],
                         rand.nextInt(enemyMinSpeed, enemyMaxSpeed));
             } else { // boss enemy
                 System.out.println("\t\tBoss Level!" +
                         "\n*****************************************************************");
-                createEnemy(rand.nextInt(enemyMinHealth[2],enemyMaxHealth[2]),
+                enemy = createEnemy(rand.nextInt(enemyMinHealth[2],enemyMaxHealth[2]),
                         bossEnemies[rand.nextInt(bossEnemies.length)], enemyMaxHealth[2],
                         enemyMaxDamageDealt[2], enemyMinHealth[2], enemyMinDamageDealt[2],
                         rand.nextInt(enemyMinSpeed, enemyMaxSpeed));
@@ -114,7 +132,7 @@ public class Run {
             System.out.println("\t*** Oh no! A " + enemyType + " has appeared! ***\n");
             wait(200);
 
-            // game combat
+            // COMBAT: generate game combat
             while (enemy.getEnemyHealth() > 0) {
                 System.out.println("\tYour Health Points: " + character.getCharacterHealth());
                 wait(50);
@@ -132,33 +150,29 @@ public class Run {
                 wait(50);
                 String input = String.valueOf(rand.nextInt(1, choice));
                 System.out.println("" + input);
-                if (input.equals("1")) {
-                    gameRunning = attack(enemyType, rand, level, gameRunning);
+                if (input.equals("1")) { // ATTACK ENEMY
+                    gameRunning = attack(enemyType, enemy,  rand, level, gameRunning);
                     if (character.getCharacterHealth() < 1 && gameRunning) {
                         backToTop();
                         continue RUN;
                     } else if (!gameRunning) {
                         continue RUN;
                     }
-                } else if (input.equals("2")) {
+                } else if (input.equals("2")) { // DRINK HEALTH POTION
                     useHealthPotion();
-                } else if (input.equals("3")) {
+                } else if (input.equals("3")) { // RUN AWAY
                     System.out.println("\tYou ran away from the enemy back to the top of the mine!");
                     backToTop();
                     continue RUN;
-                } else if (input.equals("4")) {
+                } else if (input.equals("4")) { // EXIT MINES
                     gameRunning = false;
                     continue RUN;
-                } else {
+                } else { // INVALID INPUT
                     System.out.println("\tSorry, invalid selection, try again.");
                 }
             }
-            if (cycle < 10) {
-                cycle++;
-            } else {
-                cycle = 1;
-            }
-            level++;
+            setCycleAndLevel();
+
             // character has been defeated by an enemy
             if (character.getCharacterHealth() < 1) {
                 if (level == 50) {
@@ -186,55 +200,16 @@ public class Run {
             System.out.println("*****************************************************************");
 
             // HEALTH POTION DROP: generate health potion drops after battles
-            if (rand.nextInt(100) > healthPotionDrop) {
-                character.setCharacterHealthPotions(character.getCharacterHealthPotions() + 1);
-                System.out.println("\tThe " + enemyType + " dropped a Health Potion!\n\tYou now have "
-                        + character.getCharacterHealthPotions() + " Health Potions!");
-                System.out.println("*****************************************************************");
-                wait(50);
-            }
+            generateHealthPotionDrop(healthPotionDrop, enemyType);
+
             // CHEST: generate found chest after battle
-            // generate health potion drops after battles
-            if (rand.nextInt(100) > findChestOdds) {
-                int foundGems = rand.nextInt(minFindGems,maxFindGems);
-                // TODO: update armor
-                System.out.println("\tOh look! There is a treasure chest in the corner!" +
-                        "\n\tYou open the chest and find a Health Potion, "
-                        + rand.nextInt(minFindGems,maxFindGems) + " Gems, and armor!");
-                wait(50);
-                character.setCharacterHealthPotions(character.getCharacterHealthPotions() + 1);
-                character.setCharacterGems(character.getCharacterGems() + foundGems);
-                System.out.println("\tYou now have " + character.getCharacterHealthPotions() +
-                        " Health Potions and " + character.getCharacterGems() + " Gems!");
-                System.out.println("*****************************************************************");
-                wait(50);
-            }
+            generateChest(findChestOdds, minFindGems, maxFindGems);
+
+            // SHOP: generate shop, bring player back to top level
+            generateShop(findShopOdds);
 
             // NEXT MOVE: prompt character for next move
-            System.out.println("\n\tWhat would you like to do now?");
-            System.out.println("\t1: Continue deeper into the mines");
-            System.out.println("\t2: Drink a Health Potion");
-            System.out.println("\t3: Exit the mines");
-            wait(50);
-            String input = String.valueOf(rand.nextInt(1, choice));
-            System.out.println("" + input);
-            while (!input.equals("1") && !input.equals("2") && !input.equals("3")) {
-                System.out.println("Sorry, invalid choice, please try again!");
-                input = String.valueOf(rand.nextInt(1, choice));
-                System.out.println("" + input);
-                wait(50);
-            }
-            if (input.equals("1")) {
-                System.out.println("\tYou continue deeper into the mines.");
-                wait(50);
-            } else if (input.equals("2")) {
-                useHealthPotion();
-            } else if (input.equals("3")) {
-                System.out.println(("\tYou complete your time in the mines."));
-                wait(50);
-                gameRunning = false;
-                break;
-            }
+            gameRunning = nextMove(gameRunning, choice);
 
             // LOW HEALTH: character health is too low to continue
             if (character.getCharacterHealth() < 75) {
@@ -343,11 +318,11 @@ public class Run {
      * @param enemyMinDamageDealt int
      * @param enemySpeed int
      */
-    public void createEnemy(int enemyHealth, String enemyType, int enemyMaxHealth,
+    public Enemy createEnemy(int enemyHealth, String enemyType, int enemyMaxHealth,
                             int enemyMaxDamageDealt, int enemyMinHealth,
                             int enemyMinDamageDealt, int enemySpeed) {
 
-        this.enemy = EnemyFactory.getEnemy(enemyType, enemyHealth, enemyMaxHealth,
+         return EnemyFactory.getEnemy(enemyType, enemyHealth, enemyMaxHealth,
                 enemyMaxDamageDealt, enemyMinHealth, enemyMinDamageDealt, enemySpeed);
     }
 
@@ -356,19 +331,36 @@ public class Run {
      */
     public void useHealthPotion() {
         if (character.getCharacterHealthPotions() > 0) {
-            if (character.getCharacterHealth() + character.getCharacterHealthPotions()
+            if (character.getCharacterHealth() + character.getCharacterHealthPotionHealAmt()
                     <= character.getCharacterMaxHealth()) {
                 character.setCharacterHealth(character.getCharacterHealth() +
                         character.getCharacterHealthPotionHealAmt());
+
+                character.setCharacterHealthPotions(character.getCharacterHealthPotions() - 1);
+                System.out.println("\tYou drink a Health Potion which heals you for " +
+                        character.getCharacterHealthPotionHealAmt() + " Health Points.\n\tYou now have " +
+                        character.getCharacterHealth() + " Health Points." + "\n\tYou have " +
+                        character.getCharacterHealthPotions() + " Health Potions left.");
+                wait(50);
             } else {
-                character.setCharacterHealth(character.getCharacterMaxHealth());
+                int heal = character.getCharacterHealth()  + character.getCharacterHealthPotionHealAmt();
+                heal = heal - character.getCharacterMaxHealth();
+                heal = character.getCharacterHealthPotionHealAmt() - heal;
+                if (heal > 0) {
+                    character.setCharacterHealth(character.getCharacterMaxHealth());
+                    character.setCharacterHealthPotions(character.getCharacterHealthPotions() - 1);
+                    System.out.println("\tYou drink a Health Potion which heals you for " +
+                            heal + " Health Points.\n\tYou now have " +
+                            character.getCharacterHealth() + " Health Points." + "\n\tYou have " +
+                            character.getCharacterHealthPotions() + " Health Potions left.");
+                } else {
+                    System.out.println("\tYou health is already at its max!\n\tYou now have " +
+                            character.getCharacterHealth() + " Health Points." + "\n\tYou have " +
+                            character.getCharacterHealthPotions() + " Health Potions left.");
+                }
+                wait(50);
             }
-            character.setCharacterHealthPotions(character.getCharacterHealthPotions() - 1);
-            System.out.println("\tYou drink a Health Potion which heals you for " +
-                    character.getCharacterHealthPotionHealAmt() + " Health Points.\n\tYou now have " +
-                    character.getCharacterClass() + " Health Points." + "\n\tYou have " +
-                    character.getCharacterHealthPotions() + " Health Potions left.");
-            wait(50);
+
         } else {
             System.out.println("\tSorry, you don't have any health potions left!" +
                     "\n\tDefeat more enemies for a chance to get more health potions.");
@@ -376,7 +368,7 @@ public class Run {
         }
     }
 
-    public boolean attack(String enemyType, Random rand, int level, boolean gameRunning) {
+    public boolean attack(String enemyType, Enemy enemy, Random rand, int level, boolean gameRunning) {
         int characterDamageDealt = rand.nextInt(character.getCharacterAttackDamage());
         int characterDamageTaken = 0;
         characterDamageTaken = rand.nextInt(enemy.getEnemyMinDamageDealt(),enemy.getEnemyMaxDamageDealt());
@@ -451,14 +443,6 @@ public class Run {
     }
 
     /**
-     * enemy getter.
-     * @return Enemy
-     */
-    public Enemy getEnemy() {
-        return this.enemy;
-    }
-
-    /**
      * Character getter.
      * @return Character
      */
@@ -475,10 +459,167 @@ public class Run {
     }
 
     /**
+     * set level.
+     */
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    /**
      * cycle getter.
      * @return int
      */
     public int getCycle() {
         return this.cycle;
+    }
+
+    public void setCycle(int cycle) {
+        this.cycle = cycle;
+    }
+
+    /**
+     * generate health potion drop
+     * @param healthPotionDrop
+     */
+    public void generateHealthPotionDrop(int healthPotionDrop, String enemyType) {
+        if (rand.nextInt(100) > healthPotionDrop) {
+            character.setCharacterHealthPotions(character.getCharacterHealthPotions() + 1);
+            System.out.println("\tThe " + enemyType + " dropped a Health Potion!\n\tYou now have "
+                    + character.getCharacterHealthPotions() + " Health Potions!");
+            System.out.println("*****************************************************************");
+            wait(50);
+        }
+    }
+
+    /**
+     * Generate chess.
+     * @param findChestOdds int
+     * @param minFindGems int
+     * @param maxFindGems int
+     */
+    public void generateChest(int findChestOdds, int minFindGems, int maxFindGems) {
+        if (rand.nextInt(100) > findChestOdds) {
+            int foundGems = rand.nextInt(minFindGems,maxFindGems);
+            String item = equipItems[rand.nextInt(equipItems.length)];
+            int itemAdvantage = rand.nextInt(equipItemMaxAdvantage);
+            System.out.println("\tOh look! There is a treasure chest in the corner!" +
+                    "\n\tYou open the chest and find a Health Potion, "
+                    + rand.nextInt(minFindGems,maxFindGems) + " Gems,\n\tand a " +
+                    item + " that gives " + itemAdvantage + " advantage points!");
+            wait(50);
+            character.setCharacterHealthPotions(character.getCharacterHealthPotions() + 1);
+            character.setCharacterGems(character.getCharacterGems() + foundGems);
+            System.out.println("\tYou now have " + character.getCharacterHealthPotions() +
+                    " Health Potions and " + character.getCharacterGems() + " Gems!");
+            System.out.println("*****************************************************************");
+            wait(50);
+        }
+    }
+
+    /**
+     * Generate shop.
+     * @param findShopOdds int
+     */
+    public void generateShop(int findShopOdds) {
+        int healthPotionPrice = 25;
+        if (rand.nextInt(100) > findShopOdds) {
+            //String item = equipItems[rand.nextInt(equipItems.length)];
+            //int itemAdvantage = rand.nextInt(equipItemMaxAdvantage);
+            boolean inShop = false;
+            boolean answer = true;
+            System.out.println("\tOh look! There is a shop!\n\tWould you like to enter the shop?" +
+                    "\n\t1: Yes, enter shop!" +
+                    "\n\t2: No, don't go in");
+            String input = String.valueOf(rand.nextInt(1, 3));
+            System.out.println("" + input);
+            while (answer) {
+                if (input.equals("1")) {
+                    inShop = true;
+                    answer = false;
+                    System.out.println("\n\tYou enter the shop.\n\tYou have " +
+                            character.getCharacterGems() + " Gems available.");
+                    while (inShop) {
+                        System.out.println("\t\nWhat would you like to do?" +
+                                "\n\t1: Buy a Health Potion for " + healthPotionPrice + " Gems." +
+                                "\n\t2: Leave the shop.");
+                        input = String.valueOf(rand.nextInt(1, 3));
+                        System.out.println("" + input);
+                        if (input.equals("1")) {
+                            if (character.getCharacterGems() >= healthPotionPrice) {
+                                wait(50);
+                                System.out.println("\tYou buy a Health Potion");
+                                character.setCharacterHealthPotions(character.getCharacterHealthPotions() + 1);
+                                character.setCharacterGems(character.getCharacterGems() - healthPotionPrice);
+                                System.out.println("\tYou now have " + character.getCharacterHealthPotions() +
+                                        " Health Potions and " + character.getCharacterGems() + " Gems left.");
+                                System.out.println("*****************************************************************");
+                                wait(50);
+                            } else {
+                                System.out.println("\tSorry!, you do not have enough Gems to buy a Health Potion!" +
+                                        "\n\tYou leave the shop.");
+                                inShop = false;
+                                break;
+                            }
+                        } else if (input.equals("2")) {
+                            System.out.println("\tYou are now leaving the shop." +
+                                    "\n\tCome back soon!");
+                            inShop = false;
+                        } else {
+                            System.out.println("\tSorry, invalid input, try again!");
+                        }
+                    }
+                } else if (input.equals("2")) {
+                    System.out.println("\tYou decide to no enter the shop.");
+                    answer = false;
+                } else {
+                    System.out.println("\tSorry, invalid input, try again!");
+                }
+            }
+        }
+    }
+
+    /**
+     * Increment cycle and level, or reset cycle.
+     */
+    public void setCycleAndLevel() {
+        if (cycle < 10) { // INCREMENT CYCLE
+            cycle++;
+        } else { // RESET CYCLE
+            cycle = 1;
+        }
+        level++; // INCREMENT LEVEL
+    }
+
+    /**
+     * Generate next move.
+     * @param gameRunning boolean
+     * @param choice int
+     * @return boolean
+     */
+    public boolean nextMove(boolean gameRunning, int choice) {
+        System.out.println("\n\tWhat would you like to do now?");
+        System.out.println("\t1: Continue deeper into the mines");
+        System.out.println("\t2: Drink a Health Potion");
+        System.out.println("\t3: Exit the mines");
+        wait(50);
+        String input = String.valueOf(rand.nextInt(1, choice));
+        System.out.println("" + input);
+        while (!input.equals("1") && !input.equals("2") && !input.equals("3")) {
+            System.out.println("Sorry, invalid choice, please try again!");
+            input = String.valueOf(rand.nextInt(1, choice));
+            System.out.println("" + input);
+            wait(50);
+        }
+        if (input.equals("1")) {
+            System.out.println("\tYou continue deeper into the mines.");
+            wait(50);
+        } else if (input.equals("2")) {
+            useHealthPotion();
+        } else if (input.equals("3")) {
+            System.out.println(("\tYou complete your time in the mines."));
+            wait(50);
+            gameRunning = false;
+        }
+        return gameRunning;
     }
 }

@@ -13,7 +13,7 @@ import decorator.CharacterDecorator;
  * Wizard class.
  */
 public class Wizard extends CharacterDecorator {
-    private final String characterClass = "Wizard";
+    private static final String characterClass = "Wizard";
     private int characterHealthPotionHealAmt = 100;
 
     /**

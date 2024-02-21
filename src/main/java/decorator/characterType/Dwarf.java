@@ -5,7 +5,7 @@ import decorator.CharacterDecorator;
 
 public class Dwarf extends CharacterDecorator {
 
-    private final String characterType = "Dwarf";
+    private static final String characterType = "Dwarf";
     private int characterHealth = 250;
     private int characterInitHealth = characterHealth;
     private int characterMinHealth = 100;

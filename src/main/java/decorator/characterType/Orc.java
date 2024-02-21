@@ -5,7 +5,7 @@ import decorator.CharacterDecorator;
 
 public class Orc extends CharacterDecorator {
 
-    private final String characterType = "Orc";
+    private static final String characterType = "Orc";
     private int characterHealth = 250;
     private int characterInitHealth = characterHealth;
     private int characterMinHealth = 100;

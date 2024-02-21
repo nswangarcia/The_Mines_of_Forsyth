@@ -5,7 +5,7 @@ import decorator.CharacterDecorator;
 
 public class Human extends CharacterDecorator {
 
-    private final String characterType = "Human";
+    private static final String characterType = "Human";
     private int characterHealth = 250;
     private int characterInitHealth = characterHealth;
     private int characterMinHealth = 100;

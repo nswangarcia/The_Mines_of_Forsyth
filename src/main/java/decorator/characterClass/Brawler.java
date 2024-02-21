@@ -14,7 +14,7 @@ import decorator.CharacterDecorator;
  */
 public class Brawler extends CharacterDecorator {
 
-    private final String characterClass = "Brawler";
+    private static final String characterClass = "Brawler";
     private int characterSpeed = 25;
 
     /**

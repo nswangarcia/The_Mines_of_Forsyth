@@ -5,6 +5,14 @@ public class CharacterDecorator implements Character {
     protected Character character;
 
     public CharacterDecorator(Character character){
+        this.setCharacter(character);
+    }
+
+    private Character getCharacter() {
+        return this.character;
+    }
+
+    private void setCharacter(Character character) {
         this.character = character;
     }
 
