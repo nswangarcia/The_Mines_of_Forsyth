@@ -58,6 +58,10 @@ Implemented: Yes - turn based, depending on speed. Uses Enemy Factory and Charac
 15. Player Status Effect:
 Implemented: No
 
+### Project Screen Cast:
+
+[The Mines of Forsyth Screen cast](https://youtu.be/bXGwQpLfUPI?si=h0OArbLYpRdZ_q_j)
+
 
 
 ### Resources:
